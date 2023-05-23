@@ -55,9 +55,10 @@
 
 <style>
   .map {
-    display: block;
+    display: inline-block;
     position: relative;
     margin: 20px;
     border: 1px solid #00000010;
+    vertical-align: middle;
   }
 </style>

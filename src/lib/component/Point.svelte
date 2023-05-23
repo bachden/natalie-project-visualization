@@ -22,8 +22,9 @@
 
 <style>
   .point {
-    display: block;
+    display: flex;
     position: absolute;
+    width: auto;
   }
 
   .point .point-tooltip {
@@ -33,7 +34,12 @@
     top: 10px;
     left: 10px;
     cursor: pointer;
-    opacity: 1 !important;
+    background-color: beige;
+    padding: 10px;
+    z-index: 10;
+    border-radius: 10;
+    width: fit-content;
+    white-space: nowrap;
   }
 
   .point:hover .point-tooltip {

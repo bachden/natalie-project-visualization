@@ -48,17 +48,18 @@
 
 <h2>Overview</h2>
 
-<select bind:value={selected}>
-  <option value={undefined}>-</option>
-  {#each $carData.carList as carId}
-    <option value={carId}>
-      Car {carId}
-    </option>
-  {/each}
-</select>
-
-{#if selected}
-  <a href="/cars/{selected}">Details for car {selected}</a>
-{/if}
+<p>
+    <select bind:value={selected}>
+      <option value={undefined}>-</option>
+      {#each $carData.carList as carId}
+        <option value={carId}>
+          Car {carId}
+        </option>
+      {/each}
+    </select>
+    {#if selected}
+      <a href="/cars/{selected}">Details for car {selected}</a>
+    {/if}
+</p>
 
 <Map width={mapWidth} height={mapHeight} {points} />

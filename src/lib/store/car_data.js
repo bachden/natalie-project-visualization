@@ -21,6 +21,8 @@ function calcGlobalXY(lat, long, ratio) {
     };
 }
 
+const timeRanges = {}
+
 const gpsCoordinates = gps_coordinates //
     .filter(ele => ele['car_id'] ? true : false) //
     .map(function (/** @type {{ [x: string]: any; }} */ ele) {
@@ -30,6 +32,23 @@ const gpsCoordinates = gps_coordinates //
         // @ts-ignore
         if (carList.indexOf(id) === -1) {
             carList.push(id)
+        }
+
+        if (timeRanges[id] == undefined) {
+            timeRanges[id] = {
+                minDay: -1,
+                maxDay: -1
+            }
+        }
+
+        let day = ele['day'];
+
+        if (timeRanges[id]['minDay'] == -1 || timeRanges[id]['minDay'] > day) {
+            timeRanges[id]['minDay'] = day;
+        }
+
+        if (timeRanges[id]['maxDay'] == -1 || timeRanges[id]['maxDay'] < day) {
+            timeRanges[id]['maxDay'] = day;
         }
 
         const global = calcGlobalXY(ele.lat, ele.long, 1)
@@ -50,6 +69,7 @@ const interest = businesses.map(ele => {
 carList.sort((a, b) => a - b)
 
 export const carData = readable({
+    timeRanges,
     carList,
     interest,
     gpsCoordinates,
