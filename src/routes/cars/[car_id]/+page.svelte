@@ -84,7 +84,7 @@ import Map from "$lib/component/Map.svelte";
 {/if}
 
 <p>
-    <input bind:value={minuteOffset} type="range" style="width: 320px" min="0" max="{maxCummulativeMinuteTotal}" step="1" on:input={onMinuteOffsetChange}/>
+    <input bind:value={minuteOffset} type="range" style="width: 320px" min="0" max="{maxCummulativeMinuteTotal}" step="1" on:change={onMinuteOffsetChange}/>
 </p>
 
 <Map width={300} height={300} {points} />
