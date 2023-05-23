@@ -6,6 +6,10 @@
 	 */
     export let day;
     export let carId;
+    /**
+	 * @type {any}
+	 */
+    export let width;
     export let selectedMinute = 0;
 
     /**
@@ -31,8 +35,8 @@
             _points.push({
                 key: offset,
                 color: isBlack ? "black" : (isWhite ? "white" : "#377eb8"),
-                width: isWhite ? "0.5px" : isBlack ? "2px" : "0.07%",
-                marginLeft: isBlack ? "calc(-2px + 0.07%)" : "0"
+                width: isWhite ? "0.5px" : isBlack ? "3px" : "0.07%",
+                marginLeft: isBlack ? isWhite ? "calc(-3px + 0.5px)" : "calc(-3px + 0.07%)" : "0"
             })
         }
         return _points;
@@ -43,7 +47,7 @@
 
 <div class="car-timeline-by-day">
     <span class="day-label">{day}</span>
-    <div class="car-timeline-by-day-container">
+    <div class="car-timeline-by-day-container" style="width: {width}px">
         {#each points as point (point.key)}
             <div class="minute-point" style="background-color: {point.color}; width: {point.width}; margin-left: {point.marginLeft}"/>
         {/each}
@@ -71,7 +75,6 @@
         display: inline-block;
         position: relative;
         height: 100%;
-        width: 400px;
     }
 
     .minute-point {
